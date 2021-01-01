@@ -189,7 +189,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-01-01 10:59:51 / Modified: 11:13:49" itemprop="dateCreated datePublished" datetime="2021-01-01T10:59:51+08:00">2021-01-01</time>
+              <time title="Created: 2021-01-01 10:59:51 / Modified: 11:24:50" itemprop="dateCreated datePublished" datetime="2021-01-01T10:59:51+08:00">2021-01-01</time>
             </span>
 
           
@@ -206,11 +206,14 @@
           <blockquote>
 <p>now is new year in  2021, I hope you…</p>
 </blockquote>
-<p>&lt;! —more—&gt;</p>
-<p>Have a healthy&amp;strong body, find a good job, and keep going.</p>
-<p>All  pleasant  with you,forever and ever.</p>
-<p>best, Joe.</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/01/2021/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -252,10 +255,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-03-18 22:45:44 / Modified: 22:56:01" itemprop="dateCreated datePublished" datetime="2020-03-18T22:45:44+08:00">2020-03-18</time>
+              <time title="Created: 2020-03-18 22:45:44" itemprop="dateCreated datePublished" datetime="2020-03-18T22:45:44+08:00">2020-03-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-01-01 11:26:38" itemprop="dateModified" datetime="2021-01-01T11:26:38+08:00">2021-01-01</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -280,84 +289,14 @@
 
       
           <h4 id="VS-Code使用（C-C-）"><a href="#VS-Code使用（C-C-）" class="headerlink" title="VS Code使用（C/C++）"></a>VS Code使用（C/C++）</h4><p>这几天由于复习C/C++的需要，了解学习了一下VS Code这个目前十分受欢迎的编辑器。作为VS Code的初级玩家，有必要写一遍小总结，记录在学习过程中学到一些命令行、程序编译和调试，以及使用VS Code的知识。</p>
-<hr>
-<h5 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h5><hr>
-<ul>
-<li><p>VS Code安装</p>
-<p>前往<a href="https://code.visualstudio.com/" target="_blank" rel="noopener">微软官网</a>下载并安装好<code>visual stdio code</code>，安装步骤这里不再细讲，不会的可以自行度娘或者知乎。</p>
-</li>
-<li><p>C/C++编译环境</p>
-<p>与其他IDE不同（如VS studio）VS Code只是个纯文本编译器，没有自带有C/C++的编译器和其他功能，所以我们需要下载安装C/C++编译器，并配置相应的环境变量</p>
-<ul>
-<li><p>WinGM安装</p>
-<p>MinGW是gcc在Windows下的移植，gcc是世界上最流行的C/C++编译器组合。但gcc这个名字也指编译C语言的那个程序，g++才是C++编译器。本人使用的是<a href="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-posix/seh/x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z/download" target="_blank" rel="noopener">MinGM-w64</a>。将下载得到的文件压缩包进行解压，建议放到一个独立的且不容易被删掉的地方。</p>
-</li>
-<li><p>配置环境变量</p>
-<p>这里注意一下WinGM解压后的bin文件夹的完整路径，把它添加到环境变量的PATH中。实在不会配置环境变量的，建议度娘学习下。</p>
-</li>
-<li><p>验证MinGM是否可用</p>
-<p>打开cmd 输入<code>gcc -v</code>出现版本信息，说明MinGM可用，如果未出现相关信息，需要重新配置。注意，这里非常关键。</p>
-</li>
-</ul>
-</li>
-<li><p>扩展</p>
-<p>打开VS code在扩展商店extensions中搜索下载即可</p>
-<ul>
-<li>C/C++，又名 cpptools，提供Debug和Format功能</li>
-<li>chinese(simplified)，中文语言包</li>
-<li>Code runner，右键即可编译运行单文件，很方便；唯一缺点就是无法Dubug</li>
-</ul>
-</li>
-<li><p>配置几个.json文件(C和C++要分别配置，新建并放在.vscode文件下)</p>
-<p>创建一个你打算存放代码的文件夹，称作工作区文件夹；注意:<strong>路径不能含有中文和引号</strong>，最好不要有空格。C和C++需要分别建立不同的文件夹,也不要选上一段建出来的文件夹，源代码和编译器要分开放</p>
-<p>打开VS Code，<strong>选打开文件夹</strong>；后点新建文件夹，名称为<code>.vscode</code>。在该文件夹下创建 launch.json，tasks.json，settings.json。这几个文件的内容如下,复制粘贴即可.</p>
-<ul>
-<li><p>launch.json</p>
-<blockquote>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://github.com/Microsoft/vscode-cpptools/blob/master/launch.md</span></span><br><span class="line">&#123;</span><br><span class="line"> <span class="attr">"version"</span>: <span class="string">"0.2.0"</span>,</span><br><span class="line"> <span class="attr">"configurations"</span>: [&#123;</span><br><span class="line">     <span class="attr">"name"</span>: <span class="string">"C/C++"</span>, <span class="comment">// 配置名称，将会在启动配置的下拉菜单中显示</span></span><br><span class="line">     <span class="attr">"type"</span>: <span class="string">"cppdbg"</span>, <span class="comment">// 配置类型，cppdbg对应cpptools提供的调试功能；可以认为此处只能是cppdbg</span></span><br><span class="line">     <span class="attr">"request"</span>: <span class="string">"launch"</span>, <span class="comment">// 请求配置类型，可以为launch（启动）或attach（附加）</span></span><br><span class="line">     <span class="attr">"program"</span>: <span class="string">"$&#123;fileDirname&#125;/$&#123;fileBasenameNoExtension&#125;.exe"</span>, <span class="comment">// 将要进行调试的程序的路径</span></span><br><span class="line">     <span class="attr">"args"</span>: [], <span class="comment">// 程序调试时传递给程序的命令行参数，一般设为空即可</span></span><br><span class="line">     <span class="attr">"stopAtEntry"</span>: <span class="literal">false</span>, <span class="comment">// 设为true时程序将暂停在程序入口处，相当于在main上打断点</span></span><br><span class="line">     <span class="attr">"cwd"</span>: <span class="string">"$&#123;workspaceFolder&#125;"</span>, <span class="comment">// 调试程序时的工作目录，此为工作区文件夹；改成$&#123;fileDirname&#125;可变为文件所在目录</span></span><br><span class="line">     <span class="attr">"environment"</span>: [], <span class="comment">// 环境变量</span></span><br><span class="line">     <span class="attr">"externalConsole"</span>: <span class="literal">true</span>, <span class="comment">// 为true时使用单独的cmd窗口，与其它IDE一致；18年10月后设为false可调用VSC内置终端</span></span><br><span class="line">     <span class="attr">"internalConsoleOptions"</span>: <span class="string">"neverOpen"</span>, <span class="comment">// 如果不设为neverOpen，调试时会跳到“调试控制台”选项卡，你应该不需要对gdb手动输命令吧？</span></span><br><span class="line">     <span class="attr">"MIMode"</span>: <span class="string">"gdb"</span>, <span class="comment">// 指定连接的调试器，可以为gdb或lldb。但我没试过lldb</span></span><br><span class="line">     <span class="attr">"miDebuggerPath"</span>: <span class="string">"G:/Tools/mingw64/bin/gdb.exe"</span>, <span class="comment">// 调试器路径，Windows下后缀不能省略，Linux下则不要</span></span><br><span class="line">     <span class="attr">"setupCommands"</span>: [</span><br><span class="line">         &#123; <span class="comment">// 模板自带，好像可以更好地显示STL容器的内容，具体作用自行Google</span></span><br><span class="line">             <span class="attr">"description"</span>: <span class="string">"Enable pretty-printing for gdb"</span>,</span><br><span class="line">             <span class="attr">"text"</span>: <span class="string">"-enable-pretty-printing"</span>,</span><br><span class="line">             <span class="attr">"ignoreFailures"</span>: <span class="literal">false</span></span><br><span class="line">         &#125;</span><br><span class="line">     ],</span><br><span class="line">     <span class="attr">"preLaunchTask"</span>: <span class="string">"Compile"</span> <span class="comment">// 调试会话开始前执行的任务，一般为编译程序。与tasks.json的label相对应</span></span><br><span class="line"> &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-</blockquote>
-</li>
-<li><p>settings.json</p>
-<blockquote>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> <span class="attr">"files.defaultLanguage"</span>: <span class="string">"c"</span>, <span class="comment">// ctrl+N新建文件后默认的语言</span></span><br><span class="line"> <span class="attr">"editor.formatOnType"</span>: <span class="literal">true</span>,  <span class="comment">// 输入分号(C/C++的语句结束标识)后自动格式化当前这一行的代码</span></span><br><span class="line"> <span class="attr">"editor.suggest.snippetsPreventQuickSuggestions"</span>: <span class="literal">false</span>, <span class="comment">// clangd的snippets有很多的跳转点，不用这个就必须手动触发Intellisense了</span></span><br><span class="line"> <span class="attr">"editor.acceptSuggestionOnEnter"</span>: <span class="string">"off"</span>, <span class="comment">// 我个人的习惯，按回车时一定是真正的换行，只有tab才会接受Intellisense</span></span><br><span class="line"> <span class="comment">// "editor.snippetSuggestions": "top", // （可选）snippets显示在补全列表顶端，默认是inline</span></span><br><span class="line"></span><br><span class="line"> <span class="attr">"code-runner.runInTerminal"</span>: <span class="literal">true</span>, <span class="comment">// 设置成false会在“输出”中输出，无法输入</span></span><br><span class="line"> <span class="attr">"code-runner.executorMap"</span>: &#123;</span><br><span class="line">     <span class="attr">"c"</span>: <span class="string">"cd $dir &amp;&amp; gcc '$fileName' -o '$fileNameWithoutExt.exe' -Wall -g -O2 -static-libgcc -std=c11 -fexec-charset=GBK &amp;&amp; &amp;'$dir$fileNameWithoutExt'"</span>,</span><br><span class="line">     <span class="attr">"cpp"</span>: <span class="string">"cd $dir &amp;&amp; g++ '$fileName' -o '$fileNameWithoutExt.exe' -Wall -g -O2 -static-libgcc -std=c++17 -fexec-charset=GBK &amp;&amp; &amp;'$dir$fileNameWithoutExt'"</span></span><br><span class="line">     <span class="comment">// "c": "cd $dir &amp;&amp; gcc $fileName -o $fileNameWithoutExt.exe -Wall -g -O2 -static-libgcc -std=c11 -fexec-charset=GBK &amp;&amp; $dir$fileNameWithoutExt",</span></span><br><span class="line">     <span class="comment">// "cpp": "cd $dir &amp;&amp; g++ $fileName -o $fileNameWithoutExt.exe -Wall -g -O2 -static-libgcc -std=c++17 -fexec-charset=GBK &amp;&amp; $dir$fileNameWithoutExt"</span></span><br><span class="line"> &#125;, <span class="comment">// 右键run code时运行的命令；未注释的仅适用于PowerShell（Win10默认），文件名中有空格也可以编译运行；注释掉的适用于cmd（win7默认），PS和bash也能用，但文件名中有空格时无法运行</span></span><br><span class="line"> <span class="attr">"code-runner.saveFileBeforeRun"</span>: <span class="literal">true</span>, <span class="comment">// run code前保存</span></span><br><span class="line"> <span class="attr">"code-runner.preserveFocus"</span>: <span class="literal">true</span>,     <span class="comment">// 若为false，run code后光标会聚焦到终端上。如果需要频繁输入数据可设为false</span></span><br><span class="line"> <span class="attr">"code-runner.clearPreviousOutput"</span>: <span class="literal">false</span>, <span class="comment">// 每次run code前清空属于code runner的终端消息，默认false</span></span><br><span class="line"> <span class="attr">"code-runner.ignoreSelection"</span>: <span class="literal">true</span>,   <span class="comment">// 默认为false，效果是鼠标选中一块代码后可以单独执行，但C是编译型语言，不适合这样用</span></span><br><span class="line"></span><br><span class="line"> <span class="attr">"C_Cpp.clang_format_sortIncludes"</span>: <span class="literal">true</span>, <span class="comment">// 格式化时调整include的顺序（按字母排序）</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-</blockquote>
-</li>
-<li><p>tasks.json</p>
-<blockquote>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// https://code.visualstudio.com/docs/editor/tasks</span></span><br><span class="line">&#123;</span><br><span class="line"> <span class="attr">"version"</span>: <span class="string">"2.0.0"</span>,</span><br><span class="line"> <span class="attr">"tasks"</span>: [&#123;</span><br><span class="line">     <span class="attr">"label"</span>: <span class="string">"Compile"</span>, <span class="comment">// 任务名称，与launch.json的preLaunchTask相对应</span></span><br><span class="line">     <span class="attr">"command"</span>: <span class="string">"g++"</span>,   <span class="comment">// 要使用的编译器，C++用g++</span></span><br><span class="line">     <span class="attr">"args"</span>: [</span><br><span class="line">         <span class="string">"$&#123;file&#125;"</span>,</span><br><span class="line">         <span class="string">"-o"</span>,    <span class="comment">// 指定输出文件名，不加该参数则默认输出a.exe，Linux下默认a.out</span></span><br><span class="line">         <span class="string">"$&#123;fileDirname&#125;/$&#123;fileBasenameNoExtension&#125;.exe"</span>,</span><br><span class="line">         <span class="string">"-g"</span>,    <span class="comment">// 生成和调试有关的信息</span></span><br><span class="line">         <span class="string">"-Wall"</span>, <span class="comment">// 开启额外警告</span></span><br><span class="line">         <span class="string">"-static-libgcc"</span>,     <span class="comment">// 静态链接libgcc，一般都会加上</span></span><br><span class="line">         <span class="string">"-fexec-charset=GBK"</span>, <span class="comment">// 生成的程序使用GBK编码，不加这一条会导致Win下输出中文乱码</span></span><br><span class="line">         <span class="comment">// "-std=c11", // C++最新标准为c++17，或根据自己的需要进行修改</span></span><br><span class="line">     ], <span class="comment">// 编译的命令，其实相当于VSC帮你在终端中输了这些东西</span></span><br><span class="line">     <span class="attr">"type"</span>: <span class="string">"process"</span>, <span class="comment">// process是vsc把预定义变量和转义解析后直接全部传给command；shell相当于先打开shell再输入命令，所以args还会经过shell再解析一遍</span></span><br><span class="line">     <span class="attr">"group"</span>: &#123;</span><br><span class="line">         <span class="attr">"kind"</span>: <span class="string">"build"</span>,</span><br><span class="line">         <span class="attr">"isDefault"</span>: <span class="literal">true</span> <span class="comment">// 不为true时ctrl shift B就要手动选择了</span></span><br><span class="line">     &#125;,</span><br><span class="line">     <span class="attr">"presentation"</span>: &#123;</span><br><span class="line">         <span class="attr">"echo"</span>: <span class="literal">true</span>,</span><br><span class="line">         <span class="attr">"reveal"</span>: <span class="string">"always"</span>, <span class="comment">// 执行任务时是否跳转到终端面板，可以为always，silent，never。具体参见VSC的文档</span></span><br><span class="line">         <span class="attr">"focus"</span>: <span class="literal">false</span>,     <span class="comment">// 设为true后可以使执行task时焦点聚集在终端，但对编译C/C++来说，设为true没有意义</span></span><br><span class="line">         <span class="attr">"panel"</span>: <span class="string">"shared"</span>   <span class="comment">// 不同的文件的编译信息共享一个终端面板</span></span><br><span class="line">     &#125;,</span><br><span class="line">     <span class="comment">// "problemMatcher":"$gcc" // 此选项可以捕捉编译时终端里的报错信息；但因为有Lint，再开这个可能有双重报错</span></span><br><span class="line"> &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-</blockquote>
-</li>
-<li><p>c_cpp_properties.json（可有可无）</p>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h5 id="编译和运行"><a href="#编译和运行" class="headerlink" title="编译和运行"></a><strong>编译和运行</strong></h5><ul>
-<li><p>在对应的工作区下新建一个文件夹（可以不在.vscode下）用来存放编写的源代码</p>
-</li>
-<li><p>终端命令(直接在终端上用命令行编译和运行)</p>
-<ul>
-<li><p>编译(注意C和C++使用的是不同的编译器)</p>
-<p>C  <code>gcc  文件名.c  -o 文件名.exe</code>    </p>
-<p>C++  <code>g++  文件名.cpp  -o 文件名.exe</code></p>
-<p><strong>注意:C和C++使用的是不同的编译器</strong></p>
-</li>
-<li><p>运行 <code>./ 文件名.exe</code></p>
-</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>每天进步一点点，life alway!</p>
-</blockquote>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/18/Code%E4%BD%BF%E7%94%A8%EF%BC%88CC-%EF%BC%89/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
